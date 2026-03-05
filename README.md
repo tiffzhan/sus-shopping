@@ -30,7 +30,7 @@ sus-shopping/
 │   │   │   └── [id]/        # Item detail + search results + filters
 │   │   ├── wishlist/        # Wishlisted items
 │   │   ├── saved/           # Favorited listings
-│   │   ├── recommendations/ # Placeholder (scaffold)
+│   │   ├── recommendations/ # Scaffold
 │   │   └── settings/        # Config, API keys, cron docs
 │   └── api/
 │       ├── auth/            # NextAuth + signup
@@ -82,7 +82,7 @@ interface Connector {
 
 Results exceeding `maxPrice` are penalized to 30% of score. Worse-condition results penalized to 70%.
 
-### Event System (Recommender Scaffold)
+### Event System (Scaffolding for Recommender System)
 Every user action posts to `POST /api/events`:
 - `view_listing` — user opens a listing
 - `favorite_listing` — user saves a listing
@@ -160,23 +160,6 @@ Without credentials, the app uses seeded mock data and provides manual search UR
 
 ---
 
-## Enabling Notifications (Email Stub)
-
-The notification system is stubbed. To wire it up:
-
-1. Add SMTP config to `.env.local`:
-   ```
-   SMTP_HOST=smtp.yourprovider.com
-   SMTP_PORT=587
-   SMTP_USER=you@example.com
-   SMTP_PASS=yourpassword
-   SMTP_FROM=noreply@sus.shopping
-   ```
-2. Create `lib/notifications.ts` implementing `sendNotificationEmail(userId, trackedItem, newListings)`
-3. Call it from `lib/search.ts` after finding new matches for items with `notifyMe: true`
-
----
-
 ## Background Refresh (Cron)
 
 The endpoint `POST /api/refresh` runs `refreshAllTrackedItems()`.
@@ -204,17 +187,28 @@ jobs:
 
 ---
 
-## Future: Adding Recommender
+## Future
+
+# Adding Recommender
 
 1. Collect enough event data (already logging)
 2. Train a collaborative filtering or content-based model on the `Event` table
 3. Add `GET /api/recommendations` returning personalized `SearchResult[]`
-4. Replace the placeholder in `app/(dashboard)/recommendations/page.tsx`
+4. Replace placeholder in `app/(dashboard)/recommendations/page.tsx`
+
+# Enabling Notifications (Email Stub)
+
+The notification system is stubbed. To wire it up:
+
+1. Add SMTP config to `.env.local`:
+   ```
+   SMTP_HOST=smtp.yourprovider.com
+   SMTP_PORT=587
+   SMTP_USER=you@example.com
+   SMTP_PASS=yourpassword
+   SMTP_FROM=noreply@sus.shopping
+   ```
+2. Create `lib/notifications.ts` implementing `sendNotificationEmail(userId, trackedItem, newListings)`
+3. Call it from `lib/search.ts` after finding new matches for items with `notifyMe: true`
 
 ---
-
-## Demo Credentials
-```
-Email:    demo@sus.shopping
-Password: demo1234
-```

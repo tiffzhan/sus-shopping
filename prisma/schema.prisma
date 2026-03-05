@@ -1,0 +1,108 @@
+// file: prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  trackedItems  TrackedItem[]
+  wishlistItems WishlistItem[]
+  savedListings SavedListing[]
+  events        Event[]
+}
+
+model TrackedItem {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  brand       String?
+  size        String?
+  color       String?
+  keywords    String   @default("")
+  maxPrice    Float?
+  condition   String?  // new / like_new / good / fair
+  category    String   // tops / bottoms / outerwear / shoes / accessories / other
+  notes       String?
+  notifyMe    Boolean  @default(false)
+  lastSearchedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wishlistItems WishlistItem[]
+  searchResults SearchResult[]
+}
+
+model SearchResult {
+  id            String   @id @default(cuid())
+  trackedItemId String
+  externalId    String   // marketplace-specific listing id
+  title         String
+  price         Float
+  currency      String   @default("USD")
+  condition     String?
+  url           String
+  imageUrl      String?
+  marketplace   String   // ebay / poshmark / depop / mock
+  location      String?
+  postedAt      DateTime?
+  score         Float    @default(0)
+  isNew         Boolean  @default(true)
+  foundAt       DateTime @default(now())
+
+  trackedItem   TrackedItem    @relation(fields: [trackedItemId], references: [id], onDelete: Cascade)
+  savedListings SavedListing[]
+
+  @@unique([trackedItemId, externalId, marketplace])
+}
+
+model WishlistItem {
+  id            String   @id @default(cuid())
+  userId        String
+  trackedItemId String
+  addedAt       DateTime @default(now())
+  lastViewedAt  DateTime?
+  newMatchCount Int      @default(0)
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackedItem TrackedItem @relation(fields: [trackedItemId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, trackedItemId])
+}
+
+model SavedListing {
+  id             String   @id @default(cuid())
+  userId         String
+  searchResultId String
+  savedAt        DateTime @default(now())
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  searchResult SearchResult @relation(fields: [searchResultId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, searchResultId])
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // view_listing | favorite_listing | add_to_wishlist | dismiss_listing | click_outbound | search
+  payload   String   // JSON blob
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+  @@index([createdAt])
+}

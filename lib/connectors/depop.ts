@@ -1,5 +1,4 @@
-// file: lib/connectors/depop.ts
-// Depop connector — uses Playwright (Depop returns 403 to plain HTTP and is JS-rendered).
+// Depop connector: uses Playwright (Depop returns 403 to plain HTTP and is JS-rendered).
 //
 // Requires: npx playwright install chromium
 
@@ -8,7 +7,7 @@ import { rateLimiter, saveDebugHtml } from "./utils"
 import { newSearchContext } from "./browser"
 
 // ============================================================
-// SELECTORS — update here when Depop changes their markup.
+// SELECTORS: update here when Depop changes their markup.
 // Depop product cards live inside <li> elements with a
 // div.styles_productCardRoot__* wrapper. Each card has:
 //   - an <a> linking to /products/SLUG/
@@ -132,11 +131,11 @@ export const depopConnector: MarketplaceConnector = {
         if (seen.has(raw.listingId)) continue
         seen.add(raw.listingId)
 
-        // Card text is like "$250.00 $169.99MArc'teryx" — price(s) + size + brand
+        // Card text is like "$250.00 $169.99MArc'teryx": price(s) + size + brand
         const price = parsePrice(raw.text)
         if (!price || price <= 0) continue
 
-        // Extract brand — appears after the last size indicator at the end of the text
+        // Extract brand: appears after the last size indicator at the end of the text
         // Text pattern: "$250.00 $169.99MArc'teryx" → brand is "Arc'teryx"
         const brandMatch = raw.text.match(/[\d.]+(?:XXS|XS|XL|XXL|S|M|L)\s*(.+)$/i)
         const brand = brandMatch ? brandMatch[1].trim() : ""

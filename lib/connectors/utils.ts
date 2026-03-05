@@ -1,4 +1,3 @@
-// file: lib/connectors/utils.ts
 // Shared utilities: rate limiter, retry, debug HTML saving, request headers.
 
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
@@ -19,7 +18,7 @@ export const DEFAULT_HEADERS: Record<string, string> = {
 }
 
 // ---------------------------------------------------------------------------
-// Rate Limiter — enforces 1 request/sec per marketplace (in-memory)
+// Rate Limiter: enforces 1 request/sec per marketplace (in-memory)
 // ---------------------------------------------------------------------------
 class RateLimiter {
   private lastRequestTime: Record<string, number> = {}
@@ -40,11 +39,11 @@ class RateLimiter {
   }
 }
 
-/** Singleton rate limiter — 1 request per second per marketplace key. */
+/** Singleton rate limiter: 1 request per second per marketplace key. */
 export const rateLimiter = new RateLimiter(1)
 
 // ---------------------------------------------------------------------------
-// Retry with exponential backoff — retries on 429 / 5xx / timeouts
+// Retry with exponential backoff: retries on 429 / 5xx / timeouts
 // ---------------------------------------------------------------------------
 export async function fetchWithRetry(
   url: string,
@@ -74,7 +73,7 @@ export async function fetchWithRetry(
 
       const delay = Math.pow(2, attempt) * 1000 + Math.random() * 500
       console.warn(
-        `[scrape] Retry ${attempt + 1}/${maxRetries} for ${url} (${status ?? error.code}) — waiting ${Math.round(delay)}ms`,
+        `[scrape] Retry ${attempt + 1}/${maxRetries} for ${url} (${status ?? error.code}): waiting ${Math.round(delay)}ms`,
       )
       await new Promise((r) => setTimeout(r, delay))
     }
@@ -83,7 +82,7 @@ export async function fetchWithRetry(
 }
 
 // ---------------------------------------------------------------------------
-// Debug HTML saving — controlled by DEBUG_SCRAPE=1 env variable
+// Debug HTML saving: controlled by DEBUG_SCRAPE=1 env variable
 // ---------------------------------------------------------------------------
 export function saveDebugHtml(marketplace: string, html: string): void {
   if (process.env.DEBUG_SCRAPE !== "1") return

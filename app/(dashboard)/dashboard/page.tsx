@@ -1,4 +1,3 @@
-// file: app/(dashboard)/dashboard/page.tsx
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -34,7 +33,7 @@ export default async function DashboardPage() {
       {/* Header */}
       <div style={{ marginBottom: "40px" }}>
         <div className="sigil" style={{ marginBottom: "8px" }}>
-          ◈ DASHBOARD ◈ {new Date().toISOString().split("T")[0]}
+          Dashboard
         </div>
         <h1 style={{ fontSize: "24px", margin: 0 }}>TRACKED ITEMS</h1>
       </div>
@@ -60,7 +59,7 @@ export default async function DashboardPage() {
           >
             <div
               style={{
-                fontFamily: "'Orbitron', monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "28px",
                 fontWeight: 700,
                 marginBottom: "4px",

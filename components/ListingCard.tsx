@@ -1,4 +1,3 @@
-// file: components/ListingCard.tsx
 "use client";
 
 interface SearchResult {
@@ -47,10 +46,10 @@ export default function ListingCard({ result, isSaved, onToggleSave }: Props) {
           <img
             src={result.imageUrl}
             alt={result.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%)", opacity: 0.85 }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px 12px 0 0" }}
           />
         ) : (
-          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace", fontSize: "10px" }}>
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif", fontSize: "10px" }}>
             NO IMAGE
           </div>
         )}
@@ -63,9 +62,10 @@ export default function ListingCard({ result, isSaved, onToggleSave }: Props) {
           onClick={onToggleSave}
           style={{
             position: "absolute", top: "8px", right: "8px",
-            background: isSaved ? "var(--accent)" : "rgba(0,0,0,0.7)",
-            color: isSaved ? "#000" : "var(--text)",
+            background: isSaved ? "var(--accent)" : "rgba(255,255,255,0.85)",
+            color: isSaved ? "#fff" : "var(--text-dim)",
             border: `1px solid ${isSaved ? "var(--accent)" : "var(--border)"}`,
+            borderRadius: "50%",
             width: "28px", height: "28px",
             display: "flex", alignItems: "center", justifyContent: "center",
             cursor: "pointer", fontSize: "12px",
@@ -85,11 +85,11 @@ export default function ListingCard({ result, isSaved, onToggleSave }: Props) {
         </p>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontFamily: "'Orbitron', monospace", fontSize: "15px", fontWeight: 700 }}>
+          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "15px", fontWeight: 700 }}>
             ${result.price.toFixed(2)}
           </span>
           {result.condition && (
-            <span style={{ fontSize: "9px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.08em", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "1px 5px" }}>
+            <span style={{ fontSize: "9px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.08em", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "1px 5px" }}>
               {result.condition.replace("_", " ").toUpperCase()}
             </span>
           )}
@@ -98,8 +98,8 @@ export default function ListingCard({ result, isSaved, onToggleSave }: Props) {
         {/* Score bar */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "3px" }}>
-            <span style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em" }}>MATCH</span>
-            <span style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace" }}>
+            <span style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em" }}>MATCH</span>
+            <span style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif" }}>
               {Math.round(result.score * 100)}%
             </span>
           </div>
@@ -121,7 +121,7 @@ export default function ListingCard({ result, isSaved, onToggleSave }: Props) {
             display: "block",
             marginTop: "auto",
             textAlign: "center",
-            fontFamily: "'Orbitron', monospace",
+            fontFamily: "'Poppins', sans-serif",
             fontSize: "9px",
             letterSpacing: "0.1em",
             color: "var(--text-dim)",

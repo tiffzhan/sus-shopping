@@ -1,5 +1,4 @@
-// file: lib/connectors/ebay.ts
-// eBay connector — uses Playwright (eBay blocks plain HTTP with bot detection).
+// eBay connector: uses Playwright (eBay blocks plain HTTP with bot detection).
 // Falls back to eBay Browse API when EBAY_CLIENT_ID / EBAY_CLIENT_SECRET are set.
 
 import { MarketplaceConnector, SearchQuery, Listing } from "./types"
@@ -7,8 +6,7 @@ import { rateLimiter, saveDebugHtml } from "./utils"
 import { newSearchContext } from "./browser"
 
 // ============================================================
-// SELECTORS — update here when eBay changes their markup.
-// As of 2025+, eBay uses `li.s-card` inside `ul.srp-results`.
+// SELECTORS
 // ============================================================
 const SELECTORS = {
   // Each result card is a <li> inside ul.srp-results
@@ -20,7 +18,7 @@ const SELECTORS = {
 } as const
 
 // ============================================================
-// eBay Browse API (optional, used when credentials are present)
+// eBay Browse API (when credentials given)
 // ============================================================
 const EBAY_API_BASE = "https://api.ebay.com/buy/browse/v1"
 const EBAY_AUTH_URL = "https://api.ebay.com/identity/v1/oauth2/token"
@@ -220,7 +218,7 @@ export const ebayConnector: MarketplaceConnector = {
         const condMatch = text.match(/(Brand New|New|Like New|Pre-Owned|Used|Open Box)/i)
         const condition = condMatch ? mapScrapedCondition(condMatch[1]) : undefined
 
-        // Extract location — stop before coupon/promo text
+        // Extract location: stop before coupon/promo text
         const locMatch = text.match(/Located in\s+(.+?)(?:\s*(?:Sponsored|\d+%\s*off|Free|Buy It)|\s*$)/i)
         const location = locMatch ? locMatch[1].trim().replace(/\s+/g, " ") : null
 

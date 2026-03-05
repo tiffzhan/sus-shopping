@@ -1,6 +1,5 @@
-// file: lib/connectors/browser.ts
-// Shared Playwright browser instance — lazy-loaded singleton.
-// All connectors share one browser to avoid launching multiple Chromium processes.
+// Shared Playwright browser instance - lazy-loaded singleton.
+// All connectors share one browser to avoid launching multiple Chromium processes
 
 import type { Browser } from "playwright"
 import { USER_AGENT } from "./utils"
@@ -10,7 +9,7 @@ let _launching: Promise<Browser> | null = null
 
 /**
  * Get (or create) the shared headless Chromium instance.
- * Callers should NOT close the browser — it's reused across requests.
+ * Callers should NOT close the browser, rather it's reused across requests
  */
 export async function getBrowser(): Promise<Browser> {
   if (_browser?.isConnected()) return _browser
@@ -31,7 +30,7 @@ export async function getBrowser(): Promise<Browser> {
 }
 
 /**
- * Create a new browser context with sensible defaults.
+ * Create a new browser context with defaults.
  * Each search gets its own context (separate cookies/state) but shares the browser.
  */
 export async function newSearchContext() {

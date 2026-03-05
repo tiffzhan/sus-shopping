@@ -1,4 +1,3 @@
-// file: lib/notifications.ts
 // Email notification stub.
 // Wire up SMTP credentials in .env.local and implement sendEmail() to activate.
 //
@@ -24,20 +23,6 @@ export async function sendNewMatchesEmail(
   }
 
   // TODO: Implement with your email provider
-  // Example using nodemailer:
-  //
-  // const transporter = nodemailer.createTransport({
-  //   host: process.env.SMTP_HOST,
-  //   port: parseInt(process.env.SMTP_PORT ?? '587'),
-  //   auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-  // });
-  //
-  // await transporter.sendMail({
-  //   from: process.env.SMTP_FROM,
-  //   to: userEmail,
-  //   subject: `${newListings.length} new match${newListings.length > 1 ? 'es' : ''} for ${item.title}`,
-  //   html: renderEmailHtml(item, newListings),
-  // });
 
   console.log(`[notifications] Email sending not yet configured.`);
 }

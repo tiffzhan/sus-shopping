@@ -1,4 +1,3 @@
-// file: app/api/refresh/route.ts
 // Cron endpoint — call this via a scheduler (e.g. Vercel Cron, GitHub Actions).
 // Secure it with CRON_SECRET in .env.local
 

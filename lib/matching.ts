@@ -1,4 +1,3 @@
-// file: lib/matching.ts
 // Keyword-based matching and scoring for listings vs tracked items.
 
 import type { TrackedItem } from "@prisma/client"
@@ -78,5 +77,9 @@ export function rankListings(
   return listings
     .map((l) => ({ ...l, score: scoreListing(l, item) }))
     .filter((l) => l.score >= minScore)
-    .sort((a, b) => b.score - a.score)
+    .sort((a, b) => {
+      // Sort by relevance (score) descending, then by price ascending for ties
+      if (b.score !== a.score) return b.score - a.score
+      return a.price - b.price
+    })
 }

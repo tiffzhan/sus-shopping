@@ -1,4 +1,3 @@
-// file: app/(dashboard)/wishlist/page.tsx
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -54,7 +53,7 @@ export default async function WishlistPage() {
                         href={`/tracked/${item.id}`}
                         style={{ textDecoration: "none" }}
                       >
-                        <span style={{ fontFamily: "'Orbitron', monospace", fontSize: "14px", fontWeight: 600, color: "var(--text)" }}>
+                        <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--text)" }}>
                           {item.title}
                         </span>
                       </Link>
@@ -72,7 +71,7 @@ export default async function WishlistPage() {
                     {/* Top result preview */}
                     {topResult && (
                       <div style={{ borderTop: "1px solid var(--border)", paddingTop: "12px" }}>
-                        <div style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em", marginBottom: "6px" }}>
+                        <div style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em", marginBottom: "6px" }}>
                           TOP MATCH
                         </div>
                         <a
@@ -82,7 +81,7 @@ export default async function WishlistPage() {
                           style={{ textDecoration: "none", color: "var(--text-dim)", fontSize: "12px" }}
                         >
                           {topResult.title.substring(0, 80)}{topResult.title.length > 80 ? "..." : ""}{" "}
-                          <span style={{ fontFamily: "'Orbitron', monospace", color: "var(--text)" }}>
+                          <span style={{ fontFamily: "'Poppins', sans-serif", color: "var(--text)" }}>
                             ${topResult.price.toFixed(2)} ↗
                           </span>
                         </a>
@@ -91,7 +90,7 @@ export default async function WishlistPage() {
                   </div>
 
                   <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em", marginBottom: "4px" }}>
+                    <div style={{ fontSize: "9px", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em", marginBottom: "4px" }}>
                       ADDED
                     </div>
                     <div style={{ fontSize: "11px", color: "var(--text-dim)" }}>
@@ -117,7 +116,7 @@ export default async function WishlistPage() {
 
 function SmallTag({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ fontSize: "9px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.08em", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "1px 6px" }}>
+    <span style={{ fontSize: "9px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.08em", color: "var(--text-dim)", border: "1px solid var(--border)", padding: "1px 6px" }}>
       {children}
     </span>
   );

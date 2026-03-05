@@ -1,4 +1,3 @@
-// file: app/(auth)/login/page.tsx
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
@@ -33,7 +32,8 @@ export default function LoginPage() {
     <div className="auth-page">
       <div className="auth-container fade-up">
         <div className="auth-logo">
-          <span className="sigil">◈ SUS.SHOPPING ◈</span>
+          <img src="/logo.svg" alt="SUS Shopping" style={{ width: "64px", height: "64px", margin: "0 auto 8px" }} />
+          <span className="sigil">SUS SHOPPING</span>
           <h1 style={{ fontSize: "28px", marginTop: "8px" }}>SIGN IN</h1>
         </div>
 
@@ -127,7 +127,7 @@ export default function LoginPage() {
           gap: 6px;
         }
         .field label {
-          font-family: 'Orbitron', monospace;
+          font-family: 'Poppins', sans-serif;
           font-size: 10px;
           letter-spacing: 0.15em;
           color: var(--text-dim);

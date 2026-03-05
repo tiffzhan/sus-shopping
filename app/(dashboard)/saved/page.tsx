@@ -1,4 +1,3 @@
-// file: app/(dashboard)/saved/page.tsx
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -44,10 +43,10 @@ export default async function SavedPage() {
                   <img
                     src={r.imageUrl}
                     alt={r.title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%)", opacity: 0.85 }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px 12px 0 0" }}
                   />
                 ) : (
-                  <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", fontFamily: "'Orbitron', monospace", fontSize: "10px" }}>
+                  <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", fontFamily: "'Poppins', sans-serif", fontSize: "10px" }}>
                     NO IMAGE
                   </div>
                 )}
@@ -55,10 +54,10 @@ export default async function SavedPage() {
 
               <div style={{ padding: "14px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
-                  <span style={{ fontSize: "9px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em", color: "var(--text-muted)", border: "1px solid var(--border)", padding: "1px 5px" }}>
+                  <span style={{ fontSize: "9px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em", color: "var(--text-muted)", border: "1px solid var(--border)", padding: "1px 5px" }}>
                     {r.marketplace.toUpperCase()}
                   </span>
-                  <span style={{ fontFamily: "'Orbitron', monospace", fontSize: "14px", fontWeight: 700 }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 700 }}>
                     ${r.price.toFixed(2)}
                   </span>
                 </div>
@@ -85,7 +84,7 @@ export default async function SavedPage() {
                   style={{
                     display: "block",
                     textAlign: "center",
-                    fontFamily: "'Orbitron', monospace",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: "9px",
                     letterSpacing: "0.1em",
                     color: "var(--text-dim)",

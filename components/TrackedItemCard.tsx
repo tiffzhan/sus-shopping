@@ -1,4 +1,3 @@
-// file: components/TrackedItemCard.tsx
 import Link from "next/link";
 
 interface Props {
@@ -43,7 +42,7 @@ export default function TrackedItemCard({ item, newMatchCount, resultCount }: Pr
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
             <span
               style={{
-                fontFamily: "'Orbitron', monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "13px",
                 fontWeight: 600,
                 color: "var(--text)",
@@ -89,7 +88,7 @@ export default function TrackedItemCard({ item, newMatchCount, resultCount }: Pr
         <div style={{ textAlign: "right" }}>
           <div
             style={{
-              fontFamily: "'Orbitron', monospace",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: "20px",
               fontWeight: 700,
               color: resultCount > 0 ? "var(--text)" : "var(--text-muted)",
@@ -111,7 +110,7 @@ function Tag({ value, dim }: { value: string; dim?: boolean }) {
     <span
       style={{
         fontSize: "9px",
-        fontFamily: "'Orbitron', monospace",
+        fontFamily: "'Poppins', sans-serif",
         letterSpacing: "0.08em",
         color: dim ? "var(--text-muted)" : "var(--text-dim)",
         border: `1px solid ${dim ? "var(--border)" : "var(--border-bright)"}`,

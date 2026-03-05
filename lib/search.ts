@@ -1,4 +1,3 @@
-// file: lib/search.ts
 import { prisma } from "./prisma"
 import { ALL_CONNECTORS, CONNECTOR_MAP } from "./connectors"
 import { rankListings } from "./matching"
@@ -29,7 +28,7 @@ export async function searchForItem(
     category: item.category,
   }
 
-  // Search all connectors in parallel — graceful failure per marketplace
+  // Search all connectors in parallel: failure per marketplace
   const results = await Promise.allSettled(
     connectors.map((c) => c.search(query)),
   )

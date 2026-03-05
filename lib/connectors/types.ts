@@ -1,5 +1,3 @@
-// file: lib/connectors/types.ts
-
 export type SearchQuery = {
   title: string
   brand?: string | null

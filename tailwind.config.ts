@@ -10,14 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        mono: ["Share Tech Mono", "monospace"],
-        display: ["Orbitron", "monospace"],
+        sans: ["Poppins", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "serif"],
       },
       colors: {
-        bg: "#080808",
-        surface: "#0f0f0f",
-        border: "#2a2a2a",
-        text: "#e8e8e8",
+        bg: "#FFF9F7",
+        surface: "#FFFFFF",
+        border: "#F0D4CC",
+        text: "#4A3228",
+        accent: "#E88FAA",
       },
     },
   },

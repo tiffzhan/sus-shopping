@@ -1,6 +1,6 @@
-// file: components/Nav.tsx
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 
@@ -9,12 +9,20 @@ interface NavProps {
 }
 
 const NAV_LINKS = [
-  { href: "/dashboard", label: "DASHBOARD", icon: "⬡" },
-  { href: "/wishlist", label: "WISHLIST", icon: "◇" },
-  { href: "/saved", label: "SAVED", icon: "◈" },
-  { href: "/recommendations", label: "RECS", icon: "◉" },
-  { href: "/settings", label: "SETTINGS", icon: "◌" },
+  { href: "/dashboard", label: "Dashboard", icon: "grid" },
+  { href: "/wishlist", label: "Wishlist", icon: "heart" },
+  { href: "/saved", label: "Saved", icon: "bookmark" },
+  { href: "/recommendations", label: "For You", icon: "sparkle" },
+  { href: "/settings", label: "Settings", icon: "gear" },
 ];
+
+const ICONS: Record<string, string> = {
+  grid: "\u229E",
+  heart: "\u2661",
+  bookmark: "\u25C7",
+  sparkle: "\u2726",
+  gear: "\u2699",
+};
 
 export default function Nav({ user }: NavProps) {
   const pathname = usePathname();
@@ -36,28 +44,36 @@ export default function Nav({ user }: NavProps) {
       }}
     >
       {/* Logo */}
-      <div style={{ padding: "28px 20px 20px", borderBottom: "1px solid var(--border)" }}>
-        <div className="sigil" style={{ marginBottom: "4px", fontSize: "9px" }}>◈ SYSTEM ◈</div>
-        <Link href="/dashboard" style={{ textDecoration: "none" }}>
+      <div style={{ padding: "24px 20px 20px", borderBottom: "1px solid var(--border)", textAlign: "center" }}>
+        <Link href="/dashboard" style={{ textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <Image
+            src="/logo.svg"
+            alt="SUS Shopping"
+            width={56}
+            height={56}
+            style={{ marginBottom: "8px" }}
+            priority
+          />
           <h2
             style={{
-              fontFamily: "'Orbitron', monospace",
-              fontSize: "16px",
-              letterSpacing: "0.1em",
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "18px",
+              fontWeight: 700,
               color: "var(--text)",
               margin: 0,
+              letterSpacing: "0.04em",
             }}
           >
             SUS
           </h2>
-          <div style={{ fontFamily: "'Orbitron', monospace", fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.15em" }}>
+          <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.2em", fontWeight: 500 }}>
             SHOPPING
           </div>
         </Link>
       </div>
 
       {/* Nav links */}
-      <div style={{ flex: 1, padding: "16px 0" }}>
+      <div style={{ flex: 1, padding: "12px 0" }}>
         {NAV_LINKS.map((link) => {
           const active = pathname === link.href || pathname.startsWith(link.href + "/");
           return (
@@ -68,19 +84,21 @@ export default function Nav({ user }: NavProps) {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                padding: "10px 20px",
+                padding: "11px 20px",
                 textDecoration: "none",
-                color: active ? "var(--text)" : "var(--text-dim)",
+                color: active ? "#D47A95" : "var(--text-dim)",
                 background: active ? "var(--accent-dim)" : "transparent",
-                borderLeft: active ? "2px solid var(--accent)" : "2px solid transparent",
-                fontFamily: "'Orbitron', monospace",
-                fontSize: "10px",
-                letterSpacing: "0.12em",
+                borderLeft: active ? "3px solid var(--accent)" : "3px solid transparent",
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: "12px",
+                fontWeight: active ? 600 : 400,
+                letterSpacing: "0.04em",
                 transition: "all 0.15s",
+                borderRadius: "0",
               }}
               className="nav-link"
             >
-              <span style={{ fontSize: "14px", opacity: active ? 1 : 0.5 }}>{link.icon}</span>
+              <span style={{ fontSize: "15px", opacity: active ? 1 : 0.5 }}>{ICONS[link.icon]}</span>
               {link.label}
             </Link>
           );
@@ -90,29 +108,29 @@ export default function Nav({ user }: NavProps) {
       {/* New tracked item CTA */}
       <div style={{ padding: "16px 20px", borderTop: "1px solid var(--border)" }}>
         <Link href="/tracked/new" style={{ textDecoration: "none" }}>
-          <button className="btn-primary" style={{ width: "100%", fontSize: "10px" }}>
-            + TRACK ITEM
+          <button className="btn-primary" style={{ width: "100%", fontSize: "10px", borderRadius: "8px" }}>
+            + Track Item
           </button>
         </Link>
       </div>
 
       {/* User info + logout */}
       <div style={{ padding: "16px 20px", borderTop: "1px solid var(--border)" }}>
-        <div style={{ fontSize: "11px", color: "var(--text-dim)", marginBottom: "8px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+        <div style={{ fontSize: "11px", color: "var(--text-dim)", marginBottom: "8px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontFamily: "'Poppins', sans-serif" }}>
           {user.email}
         </div>
         <button
           className="btn-ghost"
-          style={{ width: "100%", fontSize: "9px" }}
+          style={{ width: "100%", fontSize: "9px", borderRadius: "8px" }}
           onClick={() => signOut({ callbackUrl: "/login" })}
         >
-          SIGN OUT
+          Sign Out
         </button>
       </div>
 
       <style jsx>{`
         .nav-link:hover {
-          color: var(--text) !important;
+          color: var(--accent) !important;
           background: var(--accent-dim) !important;
         }
       `}</style>

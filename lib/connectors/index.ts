@@ -1,4 +1,3 @@
-// file: lib/connectors/index.ts
 export { ebayConnector } from "./ebay"
 export { poshmarkConnector } from "./poshmark"
 export { depopConnector } from "./depop"

@@ -1,5 +1,4 @@
-// file: lib/connectors/poshmark.ts
-// Poshmark connector — uses Playwright (Poshmark blocks/degrades plain HTTP).
+// Poshmark connector: uses Playwright (Poshmark blocks/degrades plain HTTP).
 // Poshmark renders listing tiles with [data-et-name="listing"] and
 // links matching a[href*="/listing/"].
 
@@ -8,7 +7,7 @@ import { rateLimiter, saveDebugHtml } from "./utils"
 import { newSearchContext } from "./browser"
 
 // ============================================================
-// SELECTORS — update here when Poshmark changes their markup.
+// SELECTORS: update here when Poshmark changes their markup.
 // Each listing is a [data-et-name="listing"] element containing:
 //   - an <a> to /listing/TITLE-LISTING_ID
 //   - an <img> with the listing photo
@@ -29,7 +28,7 @@ function buildQuery(q: SearchQuery): string {
 }
 
 function parsePrice(text: string): number | null {
-  // Poshmark shows "$XX.XX" — may have strikethrough original price too
+  // Poshmark shows "$XX.XX": may have strikethrough original price too
   const matches = text.match(/\$[\d,.]+/g)
   if (!matches || matches.length === 0) return null
   // Take the last price (discounted/current price)
@@ -47,7 +46,7 @@ function extractListingId(href: string): string | null {
 }
 
 function extractTitle(href: string): string {
-  // Extract title from URL slug: /listing/ARCTERYX-BETA-LT-Jacket-698bded7...
+  // Extract title from URL: /listing/ARCTERYX-BETA-LT-Jacket-698bded7...
   const match = href.match(/\/listing\/(.+)-[a-f0-9]{24}/i)
   if (!match) return ""
   return match[1].replace(/-/g, " ").trim()
@@ -111,7 +110,7 @@ export const poshmarkConnector: MarketplaceConnector = {
             if (seen.has(href)) continue
             seen.add(href)
 
-            // ── Image extraction ──
+            // Image extraction
             // Try multiple strategies since some cards lazy-load images.
             let imgSrc: string | null = null
             let title = ""

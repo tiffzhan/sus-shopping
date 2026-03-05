@@ -1,4 +1,3 @@
-// file: app/(dashboard)/tracked/[id]/page.tsx
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -234,7 +233,7 @@ export default function TrackedItemDetailPage() {
                   onChange={() => toggleMarketplace(mp)}
                   style={{ width: "auto", accentColor: "white" }}
                 />
-                <span style={{ fontSize: "10px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em", color: "var(--text-dim)", textTransform: "uppercase" }}>
+                <span style={{ fontSize: "10px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em", color: "var(--text-dim)", textTransform: "uppercase" }}>
                   {mp}
                 </span>
                 {searchUrls[mp] && (
@@ -277,7 +276,7 @@ export default function TrackedItemDetailPage() {
                   onChange={() => setFilterCondition(c.value)}
                   style={{ width: "auto", accentColor: "white" }}
                 />
-                <span style={{ fontSize: "10px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.1em", color: filterCondition === c.value ? "var(--text)" : "var(--text-dim)" }}>
+                <span style={{ fontSize: "10px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.1em", color: filterCondition === c.value ? "var(--text)" : "var(--text-dim)" }}>
                   {c.label}
                 </span>
               </label>
@@ -304,7 +303,7 @@ export default function TrackedItemDetailPage() {
                 style={{
                   display: "block",
                   fontSize: "10px",
-                  fontFamily: "'Orbitron', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                   letterSpacing: "0.1em",
                   color: "var(--text-dim)",
                   textDecoration: "none",
@@ -365,7 +364,7 @@ export default function TrackedItemDetailPage() {
 
 function Tag({ value, dim }: { value: string; dim?: boolean }) {
   return (
-    <span style={{ fontSize: "9px", fontFamily: "'Orbitron', monospace", letterSpacing: "0.08em", color: dim ? "var(--text-muted)" : "var(--text-dim)", border: `1px solid ${dim ? "var(--border)" : "var(--border-bright)"}`, padding: "1px 6px" }}>
+    <span style={{ fontSize: "9px", fontFamily: "'Poppins', sans-serif", letterSpacing: "0.08em", color: dim ? "var(--text-muted)" : "var(--text-dim)", border: `1px solid ${dim ? "var(--border)" : "var(--border-bright)"}`, padding: "1px 6px" }}>
       {value}
     </span>
   );
@@ -374,7 +373,7 @@ function Tag({ value, dim }: { value: string; dim?: boolean }) {
 function FilterSection({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <div style={{ fontFamily: "'Orbitron', monospace", fontSize: "9px", letterSpacing: "0.15em", color: "var(--text-muted)", marginBottom: "10px" }}>
+      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "9px", letterSpacing: "0.15em", color: "var(--text-muted)", marginBottom: "10px" }}>
         {label}
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -388,7 +387,7 @@ function LoadingState() {
   return (
     <div style={{ padding: "32px 40px", display: "flex", alignItems: "center", gap: "10px", color: "var(--text-dim)" }}>
       <span className="pulse-dot" />
-      <span style={{ fontFamily: "'Orbitron', monospace", fontSize: "11px", letterSpacing: "0.1em" }}>
+      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", letterSpacing: "0.1em" }}>
         LOADING...
       </span>
     </div>

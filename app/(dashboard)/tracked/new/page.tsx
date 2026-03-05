@@ -1,4 +1,3 @@
-// file: app/(dashboard)/tracked/new/page.tsx
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -120,7 +119,7 @@ export default function NewTrackedItemPage() {
                 type="button"
                 style={{
                   padding: "6px 14px",
-                  fontFamily: "'Orbitron', monospace",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: "10px",
                   letterSpacing: "0.1em",
                   cursor: "pointer",
@@ -168,7 +167,7 @@ export default function NewTrackedItemPage() {
             />
             <span
               style={{
-                fontFamily: "'Orbitron', monospace",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "10px",
                 letterSpacing: "0.1em",
                 color: form.notifyMe ? "var(--text)" : "var(--text-dim)",
@@ -217,7 +216,7 @@ function Field({ label, children, required }: { label: string; children: React.R
     <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
       <label
         style={{
-          fontFamily: "'Orbitron', monospace",
+          fontFamily: "'Poppins', sans-serif",
           fontSize: "9px",
           letterSpacing: "0.15em",
           color: "var(--text-dim)",

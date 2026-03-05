@@ -47,11 +47,11 @@ export default function Nav({ user }: NavProps) {
       <div style={{ padding: "24px 20px 20px", borderBottom: "1px solid var(--border)", textAlign: "center" }}>
         <Link href="/dashboard" style={{ textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center"}}>
           <Image
-            src="/logo.svg"
+            src="/sus_logo.jpg"
             alt="SUS Shopping"
-            width={56}
-            height={56}
-            style={{ marginBottom: "8px" }}
+            width={99}
+            height={99}
+            style={{ marginBottom: "4px" }}
             priority
           />
           <h2

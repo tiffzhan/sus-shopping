@@ -187,16 +187,16 @@ jobs:
 
 ---
 
-## Future
+# Future
 
-# Adding Recommender
+## Adding Recommender
 
 1. Collect enough event data (already logging)
 2. Train a collaborative filtering or content-based model on the `Event` table
 3. Add `GET /api/recommendations` returning personalized `SearchResult[]`
 4. Replace placeholder in `app/(dashboard)/recommendations/page.tsx`
 
-# Enabling Notifications (Email Stub)
+## Enabling Notifications (Email Stub)
 
 The notification system is stubbed. To wire it up:
 
